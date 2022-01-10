@@ -35,6 +35,10 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-data-rest:1.5.12'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.6.1'
+	implementation fileTree(dir: '/Users/italohonorato/Desarrollo_Apps/back-end/team-weichafe/common/build/libs',
+			include: 'common-0.0.1-SNAPSHOT-plain.jar')
+	implementation 'org.modelmapper:modelmapper:2.4.5'
+	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:1.0.6.RELEASE'
 }
 
 dependencyManagement {

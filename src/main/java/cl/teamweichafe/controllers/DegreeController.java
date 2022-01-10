@@ -1,5 +1,6 @@
 package cl.teamweichafe.controllers;
 
+import cl.teamweichafe.common.dtos.DegreeDto;
 import cl.teamweichafe.domain.Degree;
 import cl.teamweichafe.services.DegreeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,29 +37,29 @@ public class DegreeController {
     }
 
     @Operation(summary = "Endpoint to retrieve all Degrees")
-    @GetMapping
-    public ResponseEntity<List<Degree>> getAll() {
+    @GetMapping(produces = "application/json")
+    public ResponseEntity<List<DegreeDto>> getAll() {
 
-        return ResponseEntity.ok(this.degreeService.getAll());
+        return ResponseEntity.ok(this.degreeService.getAllDegrees());
     }
 
     @Operation(summary = "Endpoint to retrieve a Degree by Id")
     @GetMapping("/{id}")
-    public ResponseEntity<Degree> getById(@PathVariable String id ) {
+    public ResponseEntity<DegreeDto> getById(@PathVariable String id ) {
 
-        return ResponseEntity.ok(this.degreeService.get(id));
+        return ResponseEntity.ok(this.degreeService.getDegree(id));
     }
 
     @Operation(summary = "Endpoint to add a new Degree")
     @PostMapping
-    public ResponseEntity<Degree> create(@RequestBody Degree degree) {
-        return ResponseEntity.ok(degreeService.save(degree));
+    public ResponseEntity<DegreeDto> create(@RequestBody DegreeDto degreeDto) {
+        return ResponseEntity.ok(degreeService.saveDegree(degreeDto));
     }
 
     @Operation(summary = "Endpoint to update a Degree")
     @PutMapping("/{id}")
-    public ResponseEntity<Degree> update(@PathVariable String id, @RequestBody Degree degree) {
-        return ResponseEntity.ok(degreeService.get(id));
+    public ResponseEntity<DegreeDto> update(@PathVariable String id, @RequestBody DegreeDto degreeDto) {
+        return ResponseEntity.ok(degreeService.updateDegree(id, degreeDto));
     }
 
     @Operation(summary = "Endpoint to delete a Degree")
